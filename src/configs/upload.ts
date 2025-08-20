@@ -5,7 +5,7 @@ import crypto from "node:crypto"
 // cria uma pasta temporaria para armazenar os uploads de arquivos
 // fazer dessa forma ao inves de (../../tmp) garante que vai funcionar independente do sistema operacional
 const TMP_FOLDER = path.resolve(__dirname, "..", "..", "tmp")
-const UPLOADS_FOLDER = path.relative(TMP_FOLDER, "uploads")
+const UPLOADS_FOLDER = path.resolve(__dirname, "..", "..", "uploads")
 
 // estipula um tamanho maximo de upload
 /*
