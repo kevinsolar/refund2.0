@@ -1,6 +1,6 @@
 import { prisma } from "@/database/prisma"
 import { AppError } from "@/utils/AppError"
-import { Request, Response } from "express"
+import { query, Request, Response } from "express"
 import z from "zod"
 
 const CategoriesEnum = z.enum(["food", "others", "transport", "accommodation"])
@@ -34,6 +34,30 @@ class RefundsController {
 		})
 
 		return response.status(201).json(refund)
+	}
+
+	async index(request: Request, response: Response) {
+		const querySchema = z.object({
+			name: z.string().optional().default(""),
+		})
+
+		const { name } = querySchema.parse(request.query)
+
+		const refunds = await prisma.refunds.findMany({
+			where: {
+				user: {
+					name: {
+						contains: name.trim(),
+					},
+				},
+			},
+      orderBy: { createdAt: "desc" },
+			include: {
+				user: true,
+			},
+		})
+
+		return response.json(refunds)
 	}
 }
 
