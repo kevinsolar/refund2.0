@@ -13,8 +13,7 @@ routes.use("/users", usersRoutes)
 routes.use("/sessions", sessionsRoutes)
 
 // Rotas privadas (precisa estar autenticado)
-routes.use(ensureAuthenticated)
-routes.use("/refunds", refundsRoutes)
-routes.use("/uploads", uploadsRoutes)
+routes.use("/refunds", ensureAuthenticated, refundsRoutes)
+routes.use("/uploads", ensureAuthenticated, uploadsRoutes)
 
 export { routes }

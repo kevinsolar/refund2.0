@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { RefundsController } from "@/controllers/runds-controller"
+import { RefundsController } from "@/controllers/refunds-controller"
 import { verifyUserAuthorization } from "@/middlewares/verify-user-authorization"
 
 const refundsRoutes = Router()
