@@ -21,7 +21,7 @@ class DiskStorage {
     return file
 	}
 
-	async deleteFile(file: string, type: "tmp" | "upload") {
+	async deleteFile(file: string, type: "tmp" | "uploads") {
 		const pathFile =
 			type === "tmp" ? uploadConfig.TMP_FOLDER : uploadConfig.UPLOADS_FOLDER
 
